@@ -1,7 +1,8 @@
 import json
 import os
 
-class BattPrefs(object):
+
+class KoinPrefs(object):
     def __init__(self, appname):
         self.appname = appname
 

@@ -1,22 +1,35 @@
 import argparse
+from pprint import pprint
 
-from battprefs import BattPrefs
+from koinprefs import KoinPrefs
 from exchanges import *
 
-class Koinhoo(BattPrefs):
+
+class Koinhoo(KoinPrefs):
     def __init__(self):
         super().__init__('koinhoo')
-        all_prefs = self._get_prefs()
+        self.all_exchanges = self._get_prefs()
         self.processor_for = {
-            'CoinMarketCap': CoinMarketCapExchange,
+            'CMC': CoinMarketCapExchange,
         }
 
+    def _setup_exchange(self, exch):
+        constructor = self.processor_for[exch['exchange']]
+        return constructor
+
     def get_all_rates(self):
-        pass
+        result = []
+        for exch in self.all_exchanges:
+            constructor = self._setup_exchange(exch)
+            print('{}'.format(exch['exchange']))
+            exch_processor = constructor()
+            exch_rates = exch_processor.get_rates(exch['currencies'])
+            result.extend(exch_rates)
+        return result
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--networks', nargs='+', type=str, required=False)
     args = parser.parse_args()
     kh = Koinhoo()
-    kh.get_all_rates()
+    pprint(kh.get_all_rates())
