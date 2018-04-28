@@ -1,16 +1,57 @@
 [
   {
     "exchange": "CMC",
-    "currencies": ['BTC', 'ETH, 'XRP', 'BCH', 'EOS', 'ADA', 'LTC', 'XLM', 'MIOTA', 'TRX', 'NEO', 'XMR', 'DASH', 'XEM', 'USDT', 'VEN', 'ETC', 'QTUM', 'ICX', 'OMG']
+    "currencies": [
+      "BTC",
+      "ETH",
+      "XRP",
+      "BCH",
+      "EOS",
+      "ADA",
+      "LTC",
+      "XLM",
+      "MIOTA",
+      "TRX",
+      "NEO",
+      "XMR",
+      "DASH",
+      "XEM",
+      "USDT",
+      "VEN",
+      "ETC",
+      "QTUM",
+      "ICX",
+      "OMG"
+    ]
   },
-
   {
-  	"exchange": "BINANCE"
-  	"currencies": ['BTC', 'ETH', 'BNB', 'ADA', 'BCC', 'NEO', 'LTC', 'QTUM']
-  }
-
+    "exchange": "BINANCE",
+    "currencies": [
+      "BTC",
+      "ETH",
+      "BNB",
+      "ADA",
+      "BCC",
+      "NEO",
+      "LTC",
+      "QTUM"
+    ]
+  },
   {
-  	"exchange": "KUCOIN"
-  	"currencies": ['ETH', 'NEO', 'KCS', 'FOTA', 'CS', 'DOCK', 'ETN', 'IHT', 'KICK', 'WAN', 'DEB', 'ELEC']
+    "exchange": "KUCOIN",
+    "currencies": [
+      "ETH",
+      "NEO",
+      "KCS",
+      "FOTA",
+      "CS",
+      "DOCK",
+      "ETN",
+      "IHT",
+      "KICK",
+      "WAN",
+      "DEB",
+      "ELEC"
+    ]
   }
 ]
