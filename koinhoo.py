@@ -11,6 +11,8 @@ class Koinhoo(KoinPrefs):
         self.all_exchanges = self._get_prefs()
         self.processor_for = {
             'CMC': CoinMarketCapExchange,
+            'BINANCE': BinanceExchange,
+            'KUCOIN': KuCoinExchange,
         }
 
     def _setup_exchange(self, exch):

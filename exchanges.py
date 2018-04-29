@@ -1,5 +1,5 @@
 import requests
-
+from decimal import Decimal
 
 class BaseExchange(object):
     def __init__(self):
@@ -53,5 +53,26 @@ class BinanceExchange(BaseExchange):
 
     def _get_all_rates(self):
         raw_data = requests.get(self.url).json()
+        usd_rates = [x for x in raw_data if 'USDT' in x['symbol']]
+        for x in usd_rates:
+            symbol = x['symbol'].replace('USDT','')
+            self.rate_for[symbol] = x['price']
+
+class KuCoinExchange(BaseExchange):
+    def __init__(self):
+        super().__init__()
+        self.url = 'https://kitchen-5.kucoin.com/v1/market/open/symbols'
+        self.name = 'KuCoin'
+        self._get_all_rates()
+
+    def _get_all_rates(self):
+        raw_data = requests.get(self.url).json()['data']
+        usd_rates = [x for x in raw_data if x['coinTypePair'] == 'USDT']
+        for x in usd_rates:
+            self.rate_for[x['coinType']] = str(x['lastDealPrice'])
         for x in raw_data:
-            self.rate_for[x['symbol']] = x['price_usd']
+            if x['coinTypePair'] == 'USDT' or x['coinType'] in self.rate_for:
+                continue
+            self.rate_for[x['coinType']] = str(Decimal(str(x['lastDealPrice'])) * \
+                                           Decimal(self.rate_for[x['coinTypePair']]))
+
