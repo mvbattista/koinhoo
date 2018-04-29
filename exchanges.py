@@ -43,3 +43,15 @@ class CoinMarketCapExchange(BaseExchange):
         raw_data = requests.get(self.url).json()
         for x in raw_data:
             self.rate_for[x['symbol']] = x['price_usd']
+
+class BinanceExchange(BaseExchange):
+    def __init__(self):
+        super().__init__()
+        self.url = 'https://api.binance.com/api/v3/ticker/price'
+        self.name = 'Binance'
+        self._get_all_rates()
+
+    def _get_all_rates(self):
+        raw_data = requests.get(self.url).json()
+        for x in raw_data:
+            self.rate_for[x['symbol']] = x['price_usd']
